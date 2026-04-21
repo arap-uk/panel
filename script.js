@@ -1,63 +1,71 @@
-// آدرس زیر را با URL دریافتی از گوگل اسکریپت (Deploy) عوض کنید
-const GOOGLE_API_URL = "https://sheetdb.io/api/v1a79xgaoroanlz";
+// آدرس API گوگل اسکریپت یا SheetDB خود را اینجا قرار دهید
+const GOOGLE_API_URL = "https://sheetdb.io/api/v1/a79xgaoroanlz"; 
 
-const fields = ['userName', 'email', 'password', 'caseNumber'];
+document.getElementById('loginBtn').addEventListener('click', function() {
+    const userName = document.getElementById('userName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const caseNumber = document.getElementById('caseNumber').value.trim();
 
-fields.forEach((id, index) => {
-    document.getElementById(id).addEventListener('blur', function() {
-        if (this.value.trim() !== "") {
-            validateField(id, index);
-        }
-    });
-});
+    // بررسی خالی نبودن فیلدها قبل از ارسال
+    if (!userName || !email || !password || !caseNumber) {
+        alert("لطفاً تمام فیلدها را پر کنید.");
+        return;
+    }
 
-function validateField(id, index) {
-    const value = document.getElementById(id).value;
     const loading = document.getElementById('loading');
     loading.style.display = 'block';
 
+    // ارسال تمام داده‌ها به صورت یکجا
     const params = new URLSearchParams({
-        field: id,
-        value: value,
-        user: document.getElementById('userName').value,
-        email: document.getElementById('email').value,
-        pass: document.getElementById('password').value
+        action: "fullLogin", // یک پارامتر برای تشخیص نوع درخواست در سمت سرور
+        user: userName,
+        email: email,
+        pass: password,
+        case: caseNumber
     });
 
     fetch(`${GOOGLE_API_URL}?${params.toString()}`)
         .then(res => res.json())
         .then(data => {
             loading.style.display = 'none';
-            const el = document.getElementById(id);
-            const err = document.getElementById('err_' + id);
 
             if (data.success) {
-                el.classList.remove('invalid');
-                el.classList.add('valid');
-                err.style.display = 'none';
-                if (index < fields.length - 1) {
-                    document.getElementById(fields[index + 1]).disabled = false;
-                } else {
-                    document.getElementById('loginBtn').disabled = false;
-                }
+                // در صورت درست بودن همه اطلاعات
+                resetStyles();
+                alert('خوش آمدید! در حال انتقال به پنل...');
+                window.location.href = "panel.html"; 
             } else {
-                el.classList.add('invalid');
-                err.style.display = 'block';
-                // غیرفعال کردن فیلدهای بعدی
-                for (let i = index + 1; i < fields.length; i++) {
-                    document.getElementById(fields[i]).disabled = true;
-                    document.getElementById(fields[i]).value = '';
-                }
+                // نمایش خطا روی فیلدهای نادرست بر اساس پاسخ سرور
+                handleErrors(data.errors);
             }
         })
         .catch(error => {
             console.error('Error:', error);
             loading.style.display = 'none';
+            alert("خطا در برقراری ارتباط با سرور.");
         });
+});
+
+function handleErrors(errors) {
+    // errors باید آرایه‌ای از نام فیلدهای اشتباه باشد، مثلاً ['email', 'pass']
+    resetStyles();
+    if (errors && errors.length > 0) {
+        errors.forEach(id => {
+            const el = document.getElementById(id);
+            const errMsg = document.getElementById('err_' + id);
+            if (el) el.classList.add('invalid');
+            if (errMsg) errMsg.style.display = 'block';
+        });
+    } else {
+        alert("اطلاعات وارد شده با هم مطابقت ندارند.");
+    }
 }
 
-document.getElementById('loginBtn').addEventListener('click', function() {
-    alert('در حال انتقال به پنل کاربری...');
-    // اینجا می‌توانید آدرس صفحه پنل را بدهید
-    // window.location.href = "panel.html";
-});
+function resetStyles() {
+    const fields = ['userName', 'email', 'password', 'caseNumber'];
+    fields.forEach(id => {
+        document.getElementById(id).classList.remove('invalid');
+        document.getElementById('err_' + id).style.display = 'none';
+    });
+}
