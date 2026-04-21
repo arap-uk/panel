@@ -1,65 +1,81 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="fa">
+<html dir="ltr" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پنل رسمی مهاجرتی</title>
+    <title id="txt_title">Official Immigration Panel</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/826/826070.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-    <img src="logo.png" class="logo" alt="Logo">
-</header>
+<div class="main-wrapper">
+    <div class="visual-section">
+        <div class="header-slider">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1526253038957-bce54e05968e?q=80&w=1470&auto=format&fit=crop')"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?q=80&w=1470&auto=format&fit=crop')"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1569091791842-7cfb64e04797?q=80&w=1470&auto=format&fit=crop')"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1540339832862-47452993293e?q=80&w=1374&auto=format&fit=crop')"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1498&auto=format&fit=crop')"></div>
+        </div>
+        <div class="overlay-content">
+            <img src="https://cdn-icons-png.flaticon.com/512/984/984233.png" class="logo" alt="Travel Logo">
+            <h1 class="logo-text">ImmiGlobal</h1>
+            <p>Official Immigration Services & Electronic Contracts</p>
+        </div>
+    </div>
+
+    <div class="form-section">
+        <div class="lang-switcher">
+            <button onclick="changeLanguage('fa')">فارسی</button>
+            <button onclick="changeLanguage('en')">English</button>
+            <button onclick="changeLanguage('it')">Italiano</button>
+        </div>
+
+        <div class="login-container">
+            <h2 id="txt_login_header">User Login</h2>
+            
+            <div class="field-group">
+                <input type="text" id="userName" placeholder="User Name">
+                <div id="err_userName" class="error-msg">❌ User not found</div>
+            </div>
+
+            <div class="field-group">
+                <input type="email" id="email" placeholder="Email Address">
+                <div id="err_email" class="error-msg">❌ Email mismatch</div>
+            </div>
+
+            <div class="field-group">
+                <input type="password" id="password" placeholder="Password">
+                <div id="err_password" class="error-msg">❌ Incorrect password</div>
+            </div>
+
+            <div class="field-group">
+                <input type="text" id="caseNumber" placeholder="Case Number">
+                <div id="err_caseNumber" class="error-msg">❌ Invalid case number</div>
+            </div>
+
+            <button id="loginBtn">Login to Panel</button>
+        </div>
+    </div>
+</div>
 
 <div id="loading">
     <img src="https://i.gifer.com/ZZ5H.gif" width="50" alt="Loading">
 </div>
 
-<div class="login-container">
-    <h2>ورود به پنل کاربری</h2>
-    
-    <div class="field-group">
-        <input type="text" id="userName" placeholder="نام کاربری (User Name)">
-        <div id="err_userName" class="error-msg">❌ نام کاربری یافت نشد</div>
-    </div>
-
-    <div class="field-group">
-        <input type="email" id="email" placeholder="ایمیل (Email Address)">
-        <div id="err_email" class="error-msg">❌ ایمیل با این کاربری مطابقت ندارد</div>
-    </div>
-
-    <div class="field-group">
-        <input type="password" id="password" placeholder="رمز عبور (Password)">
-        <div id="err_password" class="error-msg">❌ رمز عبور نادرست است</div>
-    </div>
-
-    <div class="field-group">
-        <input type="text" id="caseNumber" placeholder="شماره کیس (Case Number)">
-        <div id="err_caseNumber" class="error-msg">❌ شماره کیس نامعتبر است</div>
-    </div>
-
-    <button id="loginBtn">ورود به پنل</button>
-</div>
-
 <footer id="main-footer">
     <div class="footer-sec">
-        <h4>وکلای مهاجرتی</h4>
-        <a href="#">لیست وکلای استرالیا</a>
-        <a href="#">لیست وکلای انگلستان</a>
-        <a href="#">وکلای شینگن</a>
+        <h4 id="txt_footer_1_h">Immigration Lawyers</h4>
+        <a href="#">Australia</a> <a href="#">UK</a> <a href="#">Schengen</a>
     </div>
     <div class="footer-sec">
-        <h4>قرارداد الکترونیکی</h4>
-        <a href="#">ایجاد قرارداد جدید</a>
-        <a href="#">دریافت وکیل رایگان</a>
-        <a href="#">پیگیری درخواست</a>
+        <h4 id="txt_footer_2_h">Electronic Contract</h4>
+        <a href="#">New Contract</a> <a href="#">Track Request</a>
     </div>
     <div class="footer-sec">
-        <h4>ارتباط با ما</h4>
-        <a href="#">ایمیل آدرس</a>
-        <a href="#">واتساپ</a>
-        <a href="#">تلگرام</a>
+        <h4 id="txt_footer_3_h">Contact Us</h4>
+        <a href="#">Email</a> <a href="#">WhatsApp</a>
     </div>
 </footer>
 
